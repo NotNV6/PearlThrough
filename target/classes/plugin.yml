@@ -1,3 +1,0 @@
-name: Enderpearl
-main: rip.skyland.pearls.PearlPlugin
-version: ${pom.version}
