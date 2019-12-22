@@ -24,10 +24,8 @@ public class CustomEnderpearl extends EntityEnderPearl {
             return;
         }
 
-        Location location = this.getBukkitEntity().getLocation();
-
         // anti glitch thing
-        if (location.getBlock().getType().isSolid()) {
+        if (this.getBukkitEntity().getLocation().getBlock().getType().isSolid()) {
             return;
         }
 
