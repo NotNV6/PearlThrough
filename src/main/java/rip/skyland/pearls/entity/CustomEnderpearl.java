@@ -26,6 +26,7 @@ public class CustomEnderpearl extends EntityEnderPearl {
 
         // anti glitch thing
         if (this.getBukkitEntity().getLocation().getBlock().getType().isSolid()) {
+            this.die();
             return;
         }
 
