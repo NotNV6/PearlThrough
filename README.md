@@ -1,5 +1,5 @@
 # PearlThrough
-Made due to multiple requests
+Made due to multiple requests.
 Code might not be the best, still learning Java.
 
 # Notes
