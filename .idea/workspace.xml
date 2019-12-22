@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="25fe330d-17a9-4899-b089-2de8de014a84" name="Default Changelist" comment="" />
+    <list default="true" id="25fe330d-17a9-4899-b089-2de8de014a84" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rip/skyland/pearls/entity/CustomEnderpearl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rip/skyland/pearls/entity/CustomEnderpearl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rip/skyland/pearls/listener/EnderpearlListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rip/skyland/pearls/listener/EnderpearlListener.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +21,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
@@ -24,6 +32,10 @@
     </option>
   </component>
   <component name="ProjectId" id="1V1vRu4742YOZpd4ZUcSPkMUKA5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -76,5 +88,16 @@
       <updated>1576433411308</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

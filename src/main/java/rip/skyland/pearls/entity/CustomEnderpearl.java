@@ -17,7 +17,7 @@ public class CustomEnderpearl extends EntityEnderPearl {
 
         boolean shouldContinue = true;
 
-
+        // check if it's a passable block
         if ((block == Blocks.TRIPWIRE && Locale.PEARL_THROUGH_TRIPWIRE.getAsBoolean()) ||
                 (block == Blocks.FENCE_GATE && BlockFenceGate.b(this.world.getData(movingObjectPosition.b, movingObjectPosition.c, movingObjectPosition.d)) && Locale.PEARL_THROUGH_FENCE.getAsBoolean())
                 //|| (block == Blocks.STEP && Locale.PEARL_THROUGH_SLAB.getAsBoolean())
@@ -28,6 +28,7 @@ public class CustomEnderpearl extends EntityEnderPearl {
 
         Location location = this.getBukkitEntity().getLocation();
 
+        // anti glitch thing
         if (location.getBlock().getType().isSolid()) {
             shouldContinue = false;
         }

@@ -12,10 +12,24 @@ import rip.skyland.pearls.entity.CustomEnderpearl;
 
 public class EnderpearlListener implements Listener {
 
+    /**
+     * method to set the cancelled boolean to false
+     * if you click the air, spigot calls the event as cancelled.
+     */
+
     @EventHandler(priority = EventPriority.LOWEST)
     public void interactEventCancellation(PlayerInteractEvent event) {
         event.setCancelled(false);
     }
+
+
+    /**
+     *
+     * replace the default enderpearl with our custom enderpearl
+     * could possibly do this easier and better, but cba.
+     *
+     * @param event the fired event
+     */
 
     @EventHandler(priority= EventPriority.HIGHEST)
     public void onInteract(PlayerInteractEvent event) {
