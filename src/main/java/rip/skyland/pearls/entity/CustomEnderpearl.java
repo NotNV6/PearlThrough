@@ -15,25 +15,22 @@ public class CustomEnderpearl extends EntityEnderPearl {
     protected void a(MovingObjectPosition movingObjectPosition) {
         Block block = this.world.getType(movingObjectPosition.b, movingObjectPosition.c, movingObjectPosition.d);
 
-        boolean shouldContinue = true;
-
         // check if it's a passable block
         if ((block == Blocks.TRIPWIRE && Locale.PEARL_THROUGH_TRIPWIRE.getAsBoolean()) ||
                 (block == Blocks.FENCE_GATE && BlockFenceGate.b(this.world.getData(movingObjectPosition.b, movingObjectPosition.c, movingObjectPosition.d)) && Locale.PEARL_THROUGH_FENCE.getAsBoolean())
                 //|| (block == Blocks.STEP && Locale.PEARL_THROUGH_SLAB.getAsBoolean())
                 //|| (block.getName().toLowerCase().contains("stairs") && Locale.PEARL_THROUGH_STAIR.getAsBoolean())
         ) {
-            shouldContinue = false;
+            return;
         }
 
         Location location = this.getBukkitEntity().getLocation();
 
         // anti glitch thing
         if (location.getBlock().getType().isSolid()) {
-            shouldContinue = false;
+            return;
         }
 
-        if (shouldContinue)
-            super.a(movingObjectPosition);
+        super.a(movingObjectPosition);
     }
 }
