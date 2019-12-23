@@ -11,7 +11,6 @@ To compile the plugin we use maven
 2. execute ``mvn clean install`` inside of the root folder.
 
 # Notes
-* Pearling through slabs and stairs have been completely disabled, you could possibly change it inside of rip/skyland/pearls/entity/CustomEnderpearl if you can code.
 * This requires a spigot using 1.7.4 NMS, I could probably change it to any spigot on request.
 * i have no fucking clue how git works, please dont judge me ;(
 * I recommend to disable antiglitch while using taliban pearls.
