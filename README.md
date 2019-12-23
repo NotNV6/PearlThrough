@@ -12,5 +12,5 @@ To compile the plugin we use maven
 
 # Notes
 * This requires a spigot using 1.7.4 NMS, I could probably change it to any spigot on request.
-* i have no fucking clue how git works, please dont judge me ;(
 * I recommend to disable antiglitch while using taliban pearls.
+* I don't know what talibans do, someone just told me that it allows you through slabs and stairs.
