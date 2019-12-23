@@ -4,5 +4,7 @@
 general:
   pearl_through_open_fence: true
   pearl_through_tripwire: true
+  anti_glitch: true
+taliban:
   pearl_through_slab: true
   pearl_through_stair: true

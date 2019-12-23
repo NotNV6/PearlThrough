@@ -2,16 +2,13 @@ package rip.skyland.pearls;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-import java.util.Collections;
-import java.util.List;
-
-
 public enum Locale {
 
+    ANTI_GLITCH("general.anti_glitch", true),
     PEARL_THROUGH_FENCE("general.pearl_through_open_fence", true),
     PEARL_THROUGH_TRIPWIRE("general.pearl_through_tripwire", true),
-    PEARL_THROUGH_SLAB("general.pearl_through_slab", true),
-    PEARL_THROUGH_STAIR("general.pearl_through_stair", true);
+    PEARL_THROUGH_SLAB("taliban.pearl_through_slab", true),
+    PEARL_THROUGH_STAIR("taliban.pearl_through_stair", true);
 
     Object value;
 
