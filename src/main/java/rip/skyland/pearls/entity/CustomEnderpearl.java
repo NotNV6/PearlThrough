@@ -7,6 +7,7 @@ import rip.skyland.pearls.Locale;
 
 public class CustomEnderpearl extends EntityEnderPearl {
 
+
     public CustomEnderpearl(Player player) {
         super(((CraftPlayer) player).getHandle().world, ((CraftPlayer) player).getHandle());
     }
@@ -17,9 +18,13 @@ public class CustomEnderpearl extends EntityEnderPearl {
         // check if it's a passable block
         if ((block == Blocks.TRIPWIRE && Locale.PEARL_THROUGH_TRIPWIRE.getAsBoolean()) ||
                 (block == Blocks.FENCE_GATE && BlockFenceGate.b(this.world.getData(movingObjectPosition.b, movingObjectPosition.c, movingObjectPosition.d)) && Locale.PEARL_THROUGH_FENCE.getAsBoolean())
-                || (block == Blocks.STEP && Locale.PEARL_THROUGH_SLAB.getAsBoolean())
-                || (block.getName().toLowerCase().contains("stairs") && Locale.PEARL_THROUGH_STAIR.getAsBoolean())
         ) {
+            return;
+        }
+
+        // taliban pearls
+        // made seperate section because i might add multiple checks soon
+        if ((block == Blocks.STEP && Locale.PEARL_THROUGH_SLAB.getAsBoolean()) || (block.getName().toLowerCase().contains("stairs") && Locale.PEARL_THROUGH_STAIR.getAsBoolean())) {
             return;
         }
 
@@ -28,7 +33,6 @@ public class CustomEnderpearl extends EntityEnderPearl {
             this.die();
             return;
         }
-
         super.a(movingObjectPosition);
     }
 }
