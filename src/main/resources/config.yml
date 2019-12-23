@@ -1,6 +1,3 @@
-# Main configuration file for pearls
-# Pearling through slabs/stairs has been temporarily disabled due to issues
-
 general:
   pearl_through_open_fence: true
   pearl_through_tripwire: true
