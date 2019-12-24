@@ -1,21 +1,27 @@
 # PearlThrough
-Made due to multiple requests.
-Code might not be the best, still learning Java.
-
-I only made this to prove the point that it's very easy to make a pearl through a plugin instead of a spigot without any issues.
-
+This plugin lets players pearl through blocks as it's a popular feature in the hardcore factions community.
 
 # Installation
-To compile the plugin we use maven
+You must compile the plugin yourself
 
-1. If you don't have maven installed yet, install it.
-2. execute ``mvn clean install`` inside of the root folder.
+## Requirements:
+    - Git
+    - JDK
+    - Maven
+    
+It is recommended to compile the plugin outside of an IDE due to the usage of Lombok which requires you to download a plugin for your IDE.
 
+## Compiling
+    ``console
+    git clone https://github.com/NotNV6/PearlThrough.git
+    cd PearlThrough
+    mvn package
+    ``
+    
 # Notes
-* This requires a spigot using 1.7.4 NMS, I could probably change it to any spigot on request.
-* I recommend to disable antiglitch while using taliban pearls.
-* I don't know what talibans do, someone just told me that it allows you through slabs and stairs.
+* This plugin requires a spigot using 1.7.4 NMS, You can open an issue [here](https://github.com/NotNV6/PearlThrough/issues/new) if you want any other spigot supported.
+* It is recommended to disable antiglitch while using taliban pearls.
 
 # Contact
-* Discord: NV6#4497 (might change later)
-* Twitter: @NotNv6
+* Discord: NV6#4497
+* Twitter: [@NotNV6](https://twitter.com/NotNV6)
