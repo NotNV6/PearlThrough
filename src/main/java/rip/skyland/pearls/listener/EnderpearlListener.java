@@ -1,5 +1,6 @@
 package rip.skyland.pearls.listener;
 
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
 import org.bukkit.entity.Player;
@@ -32,6 +33,10 @@ public class EnderpearlListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onInteract(PlayerInteractEvent event) {
+        // lol, forgot to add this check in the last version (yikes)
+        if(event.getPlayer().getGameMode() != GameMode.CREATIVE)
+            return;
+
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK && event.getAction() != Action.RIGHT_CLICK_AIR) {
             return;
         }
