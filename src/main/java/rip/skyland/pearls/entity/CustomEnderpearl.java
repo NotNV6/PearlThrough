@@ -100,6 +100,8 @@ public class CustomEnderpearl extends EntityEnderPearl {
         for(int x = 0; x < 3; x++) {
             for(int z = 0; z <3; z++) {
                 Location location = new Location(location1.getWorld(), location1.getBlockX(), location1.getBlockY(), location1.getBlockZ());
+                location.add(location1.getDirection());
+
                 location.setX(location.getBlockX()-1+x);
                 location.setY(location.getBlockY()+1);
                 location.setZ(location.getBlockZ()-1+z);
