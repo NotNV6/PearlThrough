@@ -33,8 +33,7 @@ public class EnderpearlListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onInteract(PlayerInteractEvent event) {
-        // lol, forgot to add this check in the last version (yikes)
-        if(event.getPlayer().getGameMode() != GameMode.CREATIVE)
+        if(event.getPlayer().getGameMode() == GameMode.CREATIVE)
             return;
 
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK && event.getAction() != Action.RIGHT_CLICK_AIR) {
