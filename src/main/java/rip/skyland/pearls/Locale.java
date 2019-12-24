@@ -15,7 +15,7 @@ public enum Locale {
     Locale(String path, Object value) {
         FileConfiguration config = PearlPlugin.getInstance().getConfig();
 
-        if(config.contains(path))
+        if (config.contains(path))
             this.value = config.get(path);
         else
             this.value = value;

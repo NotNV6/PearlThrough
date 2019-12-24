@@ -24,7 +24,6 @@ public class CustomEnderpearl extends EntityEnderPearl {
 
 
         // taliban pearls
-        // made seperate section because i might add multiple checks soon
         if ((block == Blocks.STEP && Locale.PEARL_THROUGH_SLAB.getAsBoolean()) || (block.getName().toLowerCase().contains("stairs") && Locale.PEARL_THROUGH_STAIR.getAsBoolean())) {
             return;
         }

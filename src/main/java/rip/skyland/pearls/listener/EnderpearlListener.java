@@ -24,14 +24,13 @@ public class EnderpearlListener implements Listener {
 
 
     /**
-     *
      * replace the default enderpearl with our custom enderpearl
      * could possibly do this easier and better, but cba.
      *
      * @param event the fired event
      */
 
-    @EventHandler(priority= EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onInteract(PlayerInteractEvent event) {
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK && event.getAction() != Action.RIGHT_CLICK_AIR) {
             return;
@@ -41,6 +40,7 @@ public class EnderpearlListener implements Listener {
             Player player = event.getPlayer();
 
             int amount = player.getInventory().getItemInHand().getAmount();
+
             if (amount < 2) {
                 player.getInventory().remove(player.getInventory().getHeldItemSlot());
             } else {
