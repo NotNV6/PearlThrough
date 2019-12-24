@@ -15,12 +15,16 @@ public enum Locale {
     Locale(String path, Object value) {
         FileConfiguration config = PearlPlugin.getInstance().getConfig();
 
-        if(config.contains(path))
+        if (config.contains(path)) {
             this.value = config.get(path);
-        else
+        } else {
             this.value = value;
+        }
     }
 
+    /**
+     * @return the value as a boolean
+     */
     public boolean getAsBoolean() {
         return (boolean) value;
     }

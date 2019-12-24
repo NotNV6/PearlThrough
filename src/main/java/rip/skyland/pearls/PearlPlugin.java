@@ -11,11 +11,13 @@ public class PearlPlugin extends JavaPlugin {
     private static PearlPlugin instance;
 
     public void onEnable() {
-        instance = this;
+        this.instance = this;
 
+        // initialize config.yml
         this.getConfig().options().copyDefaults(true);
         this.saveDefaultConfig();
 
+        // register listeners
         Bukkit.getPluginManager().registerEvents(new EnderpearlListener(), this);
     }
 

@@ -7,7 +7,11 @@ import rip.skyland.pearls.Locale;
 
 public class CustomEnderpearl extends EntityEnderPearl {
 
-
+    /**
+     * Creates a CustomEnderpearl instance
+     *
+     * @param player the player that threw the enderpearl
+     */
     public CustomEnderpearl(Player player) {
         super(((CraftPlayer) player).getHandle().world, ((CraftPlayer) player).getHandle());
     }
@@ -22,9 +26,7 @@ public class CustomEnderpearl extends EntityEnderPearl {
             return;
         }
 
-
         // taliban pearls
-        // made seperate section because i might add multiple checks soon
         if ((block == Blocks.STEP && Locale.PEARL_THROUGH_SLAB.getAsBoolean()) || (block.getName().toLowerCase().contains("stairs") && Locale.PEARL_THROUGH_STAIR.getAsBoolean())) {
             return;
         }
