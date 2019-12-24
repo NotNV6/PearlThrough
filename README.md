@@ -6,12 +6,12 @@ You must compile the plugin yourself
 
 # Features
 * Taliban Pearling
-- pearling through slabs and stairs
-- crit block patch
+  - pearling through slabs and stairs
+  - crit block patch
 
 * Pearling through certain objects.
-- pearling through open fence gates
-- pearling through tripwires.
+  - pearling through open fence gates
+  - pearling through tripwires.
 
 # Requirements
     * Git
