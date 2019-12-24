@@ -4,6 +4,15 @@ This plugin lets players pearl through blocks as it's a popular feature in the h
 # Installation
 You must compile the plugin yourself
 
+# Features
+* Taliban Pearling
+- pearling through slabs and stairs
+- crit block patch
+
+* Pearling through certain objects.
+- pearling through open fence gates
+- pearling through tripwires.
+
 # Requirements
     * Git
     * JDK
