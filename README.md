@@ -4,18 +4,20 @@ This plugin lets players pearl through blocks as it's a popular feature in the h
 # Installation
 You must compile the plugin yourself
 
-## Requirements:
+# Requirements:
     * Git
     * JDK
     * Maven
     
 It is recommended to compile the plugin outside of an IDE due to the usage of Lombok which requires you to download a plugin for your IDE.
 
-## Compiling
+# Compiling
+``
     console
     git clone https://github.com/NotNV6/PearlThrough.git
     cd PearlThrough
     mvn package
+``
     
     
 # Notes
