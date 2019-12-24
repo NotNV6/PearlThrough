@@ -4,6 +4,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 public enum Locale {
 
+    PEARL_DAMAGE("general.pearl_damage", false),
     ANTI_GLITCH("general.anti_glitch", false),
     PEARL_THROUGH_FENCE("general.pearl_through_open_fence", true),
     PEARL_THROUGH_TRIPWIRE("general.pearl_through_tripwire", true),

@@ -53,10 +53,10 @@ public class CustomEnderpearl extends EntityEnderPearl {
             return;
         }
 
-        EntityPlayer entityplayer = (EntityPlayer) this.getShooter();
-        if (entityplayer.playerConnection.b().isConnected() && entityplayer.world == this.world) {
-            CraftPlayer player = entityplayer.getBukkitEntity();
+        if (((EntityPlayer) this.getShooter()).playerConnection.b().isConnected() && this.getShooter().world == this.world) {
 
+            EntityPlayer entityplayer = (EntityPlayer) this.getShooter();
+            CraftPlayer player = entityplayer.getBukkitEntity();
 
             Location location = this.getBukkitEntity().getLocation();
             location.setPitch(player.getLocation().getPitch());
@@ -67,7 +67,7 @@ public class CustomEnderpearl extends EntityEnderPearl {
                 location.setY(location.getY() - 1);
 
                 if (location.getBlock().getType().isSolid()) {
-                    if(this.getClosestSafeLocation(location) != null) {
+                    if (this.getClosestSafeLocation(location) != null) {
                         location = this.getClosestSafeLocation(location);
                     } else {
                         this.dead = true;
@@ -87,9 +87,12 @@ public class CustomEnderpearl extends EntityEnderPearl {
 
                 entityplayer.playerConnection.teleport(event.getTo());
                 this.getShooter().fallDistance = 0.0F;
-                CraftEventFactory.entityDamage = this;
-                this.getShooter().damageEntity(DamageSource.FALL, 5.0F);
-                CraftEventFactory.entityDamage = null;
+
+                if(Locale.PEARL_DAMAGE.getAsBoolean()) {
+                    CraftEventFactory.entityDamage = this;
+                    this.getShooter().damageEntity(DamageSource.FALL, 5.0F);
+                    CraftEventFactory.entityDamage = null;
+                }
             }
         }
 
@@ -97,16 +100,16 @@ public class CustomEnderpearl extends EntityEnderPearl {
     }
 
     private Location getClosestSafeLocation(Location location1) {
-        for(int x = 0; x < 3; x++) {
-            for(int z = 0; z <3; z++) {
+        for (int x = 0; x < 3; x++) {
+            for (int z = 0; z < 3; z++) {
                 Location location = new Location(location1.getWorld(), location1.getBlockX(), location1.getBlockY(), location1.getBlockZ());
                 location.add(location1.getDirection());
 
-                location.setX(location.getBlockX()-1+x);
-                location.setY(location.getBlockY()+1);
-                location.setZ(location.getBlockZ()-1+z);
+                location.setX(location.getBlockX() - 1 + x);
+                location.setY(location.getBlockY() + 1);
+                location.setZ(location.getBlockZ() - 1 + z);
 
-                if(!location.getBlock().getType().isSolid()) {
+                if (!location.getBlock().getType().isSolid()) {
                     return location;
                 }
             }
@@ -114,5 +117,4 @@ public class CustomEnderpearl extends EntityEnderPearl {
 
         return null;
     }
-
 }
