@@ -3,7 +3,6 @@ package rip.skyland.pearls.entity;
 import net.minecraft.server.v1_7_R4.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.block.BlockFace;
 import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_7_R4.event.CraftEventFactory;
 import org.bukkit.entity.Player;
@@ -12,6 +11,7 @@ import rip.skyland.pearls.Locale;
 
 import java.util.stream.IntStream;
 
+// TODO: clean code
 public class CustomEnderpearl extends EntityEnderPearl {
 
 

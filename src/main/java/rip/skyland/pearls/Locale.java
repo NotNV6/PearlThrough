@@ -1,6 +1,8 @@
 package rip.skyland.pearls;
 
+import lombok.Setter;
 import org.bukkit.configuration.file.FileConfiguration;
+
 
 public enum Locale {
 
@@ -12,15 +14,24 @@ public enum Locale {
     TALIBAN_PEARLING("taliban.taliban_pearling", true),
     PEARL_THROUGH_STAIR("taliban.pearl_through_stair", true);
 
-    Object value;
+    private Object value;
+    private String path;
 
     Locale(String path, Object value) {
         FileConfiguration config = PearlPlugin.getInstance().getConfig();
+        this.path = path;
 
         if (config.contains(path))
             this.value = config.get(path);
         else
             this.value = value;
+    }
+
+    public void setValue(Object value) {
+        this.value = value;
+
+        PearlPlugin.getInstance().getConfig().set(path, value);
+        PearlPlugin.getInstance().saveConfig();
     }
 
     public boolean getAsBoolean() {

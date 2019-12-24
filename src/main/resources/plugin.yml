@@ -2,3 +2,5 @@ version: ${pom.version}
 name: ${pom.name}
 website: ${pom.url}
 main: rip.skyland.pearls.PearlPlugin
+commands:
+  pearl:

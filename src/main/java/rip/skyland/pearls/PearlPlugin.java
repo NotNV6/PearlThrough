@@ -3,6 +3,7 @@ package rip.skyland.pearls;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import rip.skyland.pearls.commands.PearlCommand;
 import rip.skyland.pearls.listener.EnderpearlListener;
 
 public class PearlPlugin extends JavaPlugin {
@@ -19,5 +20,8 @@ public class PearlPlugin extends JavaPlugin {
 
         // load listeners
         Bukkit.getPluginManager().registerEvents(new EnderpearlListener(), this);
+
+        // load commands
+        this.getCommand("pearl").setExecutor(new PearlCommand());
     }
 }
