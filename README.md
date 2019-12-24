@@ -12,11 +12,11 @@ You must compile the plugin yourself
 It is recommended to compile the plugin outside of an IDE due to the usage of Lombok which requires you to download a plugin for your IDE.
 
 ## Compiling
-    ``console
+    console
     git clone https://github.com/NotNV6/PearlThrough.git
     cd PearlThrough
     mvn package
-    ``
+    
     
 # Notes
 * This plugin requires a spigot using 1.7.4 NMS, You can open an issue [here](https://github.com/NotNV6/PearlThrough/issues/new) if you want any other spigot supported.
