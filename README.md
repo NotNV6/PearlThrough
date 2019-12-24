@@ -36,4 +36,4 @@ It is recommended to compile the plugin outside of an IDE due to the usage of Lo
 * Discord: NV6#4497
 * Twitter: [@NotNV6](https://twitter.com/NotNV6)
 * MC-Market: [NV6](https://www.mc-market.org/members/104815/)
-* Thread: [click here](https://www.mc-market.org/threads/550006/)
+* MC-Market Thread: [click here](https://www.mc-market.org/threads/550006/)
