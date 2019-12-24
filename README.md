@@ -5,9 +5,9 @@ This plugin lets players pearl through blocks as it's a popular feature in the h
 You must compile the plugin yourself
 
 ## Requirements:
-    - Git
-    - JDK
-    - Maven
+    * Git
+    * JDK
+    * Maven
     
 It is recommended to compile the plugin outside of an IDE due to the usage of Lombok which requires you to download a plugin for your IDE.
 
