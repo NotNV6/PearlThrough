@@ -34,6 +34,9 @@ mvn package
 * It is recommended to disable antiglitch while using taliban pearls.
 * Enabling pearling through slabs and stairs is a requirement for taliban pearls, but will also alow you to pearl through any slab and stair (even if you're not in a 1x1)
 
+# Contributors
+* [**NV6**](https://github.com/NotNV6) - *Main developer*
+
 # Contact
 * Discord: NV6#4497
 * Twitter: [@NotNV6](https://twitter.com/NotNV6)
