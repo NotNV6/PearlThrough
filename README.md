@@ -14,18 +14,19 @@ You must compile the plugin yourself
   - pearling through tripwires.
 
 # Requirements
-    * Git
-    * JDK
-    * Maven
+* [Git](https://git-scm.com/downloads)
+* [JDK](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+* [Maven](https://maven.apache.org/download.cgi)
     
 It is recommended to compile the plugin outside of an IDE due to the usage of Lombok which requires you to download a plugin for your IDE.
 
 # Compiling
-    console
-    git clone https://github.com/NotNV6/PearlThrough.git
-    cd PearlThrough
-    mvn package
-
+```
+console
+git clone https://github.com/NotNV6/PearlThrough.git
+cd PearlThrough
+mvn package
+```
     
     
 # Notes
