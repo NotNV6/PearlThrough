@@ -46,7 +46,7 @@ public class EnderpearlListener implements Listener {
             int amount = player.getInventory().getItemInHand().getAmount();
 
             if (amount < 2) {
-                player.getInventory().remove(player.getInventory().getHeldItemSlot());
+                player.getInventory().setItemInHand(null);
             } else {
                 player.getInventory().getItemInHand().setAmount(amount - 1);
             }
