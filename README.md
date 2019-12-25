@@ -31,6 +31,7 @@ It is recommended to compile the plugin outside of an IDE due to the usage of Lo
 # Notes
 * This plugin requires a spigot using 1.7.4 NMS, You can open an issue [here](https://github.com/NotNV6/PearlThrough/issues/new) if you want any other spigot supported.
 * It is recommended to disable antiglitch while using taliban pearls.
+* Enabling pearling through slabs and stairs is a requirement for taliban pearls, but will also alow you to pearl through any slab and stair (even if you're not in a 1x1)
 
 # Contact
 * Discord: NV6#4497
