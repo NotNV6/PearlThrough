@@ -14,6 +14,7 @@ import java.util.stream.IntStream;
 // TODO: clean code
 public class CustomEnderpearl extends EntityEnderPearl {
 
+    private boolean passedThroughSlabOrStair = false;
 
     public CustomEnderpearl(Player player) {
         super(((CraftPlayer) player).getHandle().world, ((CraftPlayer) player).getHandle());
@@ -32,6 +33,7 @@ public class CustomEnderpearl extends EntityEnderPearl {
 
         // taliban pearls
         if ((block == Blocks.STEP && Locale.PEARL_THROUGH_SLAB.getAsBoolean()) || (block.getName().toLowerCase().contains("stairs") && Locale.PEARL_THROUGH_STAIR.getAsBoolean())) {
+            this.passedThroughSlabOrStair = true;
             return;
         }
 
@@ -63,8 +65,7 @@ public class CustomEnderpearl extends EntityEnderPearl {
             location.setYaw(player.getLocation().getYaw());
 
             // crit block for taliban pearling
-            if (Locale.TALIBAN_PEARLING.getAsBoolean() && location.add(player.getEyeLocation().getDirection().multiply(1.5)).getBlock().getType().isSolid()) {
-                location.setY(location.getY() - 1);
+            if (Locale.TALIBAN_PEARLING.getAsBoolean() && location.add(player.getEyeLocation().getDirection().multiply(1.5)).getBlock().getType().isSolid() && this.passedThroughSlabOrStair) {
 
                 if (location.getBlock().getType().isSolid()) {
                     if (this.getClosestSafeLocation(location) != null) {
@@ -76,6 +77,10 @@ public class CustomEnderpearl extends EntityEnderPearl {
                 }
             }
 
+            assert location != null;
+            if(location.getBlock().getType().isSolid() && !location.add(0, 1, 0).getBlock().getType().isSolid()) {
+                location.setY(location.getY()+1);
+            }
 
             PlayerTeleportEvent event = new PlayerTeleportEvent(player, player.getLocation(), location, PlayerTeleportEvent.TeleportCause.ENDER_PEARL);
             Bukkit.getPluginManager().callEvent(event);
