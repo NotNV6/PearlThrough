@@ -15,6 +15,7 @@ import java.util.stream.IntStream;
 public class CustomEnderpearl extends EntityEnderPearl {
 
     private boolean passedThroughSlabOrStair = false;
+    private boolean passedThroughFence = false;
 
     public CustomEnderpearl(Player player) {
         super(((CraftPlayer) player).getHandle().world, ((CraftPlayer) player).getHandle());
@@ -23,10 +24,13 @@ public class CustomEnderpearl extends EntityEnderPearl {
     protected void a(MovingObjectPosition movingObjectPosition) {
         Block block = this.world.getType(movingObjectPosition.b, movingObjectPosition.c, movingObjectPosition.d);
 
-        // check if it's a passable block
-        if ((block == Blocks.TRIPWIRE && Locale.PEARL_THROUGH_TRIPWIRE.getAsBoolean()) ||
-                (block == Blocks.FENCE_GATE && BlockFenceGate.b(this.world.getData(movingObjectPosition.b, movingObjectPosition.c, movingObjectPosition.d)) && Locale.PEARL_THROUGH_FENCE.getAsBoolean())
-        ) {
+        // check if it's a tripwire
+        if ((block == Blocks.TRIPWIRE && Locale.PEARL_THROUGH_TRIPWIRE.getAsBoolean())) {
+            return;
+        }
+
+        if((block == Blocks.FENCE_GATE && BlockFenceGate.b(this.world.getData(movingObjectPosition.b, movingObjectPosition.c, movingObjectPosition.d)) && Locale.PEARL_THROUGH_FENCE.getAsBoolean())) {
+            this.passedThroughFence = true;
             return;
         }
 
@@ -88,12 +92,11 @@ public class CustomEnderpearl extends EntityEnderPearl {
             }
 
             toCheck = getCheckableLocation(location);
-            if(toCheck.add(1, 1, 1).getBlock().getType().isSolid() && !
-                    (block.equals(Blocks.TRIPWIRE) && Locale.PEARL_THROUGH_TRIPWIRE.getAsBoolean()) &&
-                    !(block.equals(Blocks.FENCE_GATE) && BlockFenceGate.b(this.world.getData(movingObjectPosition.b, movingObjectPosition.c, movingObjectPosition.d)) && Locale.PEARL_THROUGH_FENCE.getAsBoolean())
-                    && !passedThroughSlabOrStair) {
-                this.dead = true;
-                return;
+            for(int i = 1; i < 2; i++) {
+                if(toCheck.add(i, i, i).getBlock().getType().isSolid() && !passableBlock(block, movingObjectPosition) && !passedThroughFence && !passedThroughSlabOrStair) {
+                    this.dead = true;
+                    return;
+                }
             }
 
             if(location.getBlock().getType().isSolid()) {
@@ -137,6 +140,11 @@ public class CustomEnderpearl extends EntityEnderPearl {
         location.setDirection(originalLocation.getDirection());
 
         return location;
+    }
+
+    private boolean passableBlock(Block block, MovingObjectPosition movingObjectPosition) {
+        return  (block.equals(Blocks.TRIPWIRE) && Locale.PEARL_THROUGH_TRIPWIRE.getAsBoolean()) &&
+                (block.equals(Blocks.FENCE_GATE) && BlockFenceGate.b(this.world.getData(movingObjectPosition.b, movingObjectPosition.c, movingObjectPosition.d)) && Locale.PEARL_THROUGH_FENCE.getAsBoolean());
     }
 
 }

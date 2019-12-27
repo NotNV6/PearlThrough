@@ -1,5 +1,6 @@
 package rip.skyland.pearls.listener;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
@@ -9,6 +10,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.inventory.ItemStack;
 import rip.skyland.pearls.entity.CustomEnderpearl;
 
 public class EnderpearlListener implements Listener {
@@ -64,4 +67,22 @@ public class EnderpearlListener implements Listener {
             event.setCancelled(true);
         }
     }
+
+    /**
+     *
+     * refund the enderpearl
+     *
+     * @param event the fired event
+     */
+
+    @EventHandler
+    public void onTeleport(PlayerTeleportEvent event) {
+        if (event.getCause().equals(PlayerTeleportEvent.TeleportCause.ENDER_PEARL)) {
+            if(event.isCancelled()) {
+                event.getPlayer().getInventory().addItem(new ItemStack(Material.ENDER_PEARL));
+                Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "timer set enderpearl " + event.getPlayer().getName() + " 0");
+            }
+        }
+    }
+
 }
