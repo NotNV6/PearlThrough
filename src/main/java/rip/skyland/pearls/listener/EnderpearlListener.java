@@ -44,7 +44,6 @@ public class EnderpearlListener implements Listener {
         if (!event.isCancelled() && event.getItem() != null && event.getItem().getType().equals(Material.ENDER_PEARL)) {
             if(event.getClickedBlock() != null && event.getClickedBlock().getType() != Material.FENCE_GATE && event.getClickedBlock().getType() != Material.TRIPWIRE &&
                     event.getClickedBlock().getType() != Material.STEP && !event.getClickedBlock().getType().name().toLowerCase().contains("stairs")) {
-                System.out.println("lol");
                 event.setCancelled(true);
                 return;
             }
