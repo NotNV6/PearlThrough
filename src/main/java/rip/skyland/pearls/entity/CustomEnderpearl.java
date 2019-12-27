@@ -113,7 +113,7 @@ public class CustomEnderpearl extends EntityEnderPearl {
 
                 entityplayer.playerConnection.teleport(event.getTo());
                 IntStream.range(0, 32).forEach(i -> this.world.addParticle("portal", this.locX, this.locY + this.random.nextDouble() * 2.0D, this.locZ, this.random.nextGaussian(), 0.0D, this.random.nextGaussian()));
-                
+
                 this.getShooter().fallDistance = 0.0F;
 
                 if(Locale.PEARL_DAMAGE.getAsBoolean()) {
