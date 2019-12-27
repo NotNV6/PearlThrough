@@ -38,7 +38,7 @@ mvn package
 * [**NV6**](https://github.com/NotNV6) - *Main developer*
 
 # Contact
-* Discord: NV6#4497
+* Discord: NV6#9111
 * Twitter: [@NotNV6](https://twitter.com/NotNV6)
 * MC-Market: [NV6](https://www.mc-market.org/members/104815/)
 * MC-Market Thread: [click here](https://www.mc-market.org/threads/550006/)
