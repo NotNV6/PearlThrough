@@ -22,6 +22,11 @@ public class PearlCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if(!sender.hasPermission("pearl.configure")) {
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cNo permission."));
+            return true;
+        }
+
         if (args.length < 2) {
             this.sendHelp(sender, label);
             return true;
