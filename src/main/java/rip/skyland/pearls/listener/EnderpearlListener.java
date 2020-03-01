@@ -68,21 +68,4 @@ public class EnderpearlListener implements Listener {
         }
     }
 
-    /**
-     *
-     * refund the enderpearl
-     *
-     * @param event the fired event
-     */
-
-    @EventHandler
-    public void onTeleport(PlayerTeleportEvent event) {
-        if (event.getCause().equals(PlayerTeleportEvent.TeleportCause.ENDER_PEARL)) {
-            if(event.isCancelled()) {
-                event.getPlayer().getInventory().addItem(new ItemStack(Material.ENDER_PEARL));
-                Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "timer set enderpearl " + event.getPlayer().getName() + " 0");
-            }
-        }
-    }
-
 }
