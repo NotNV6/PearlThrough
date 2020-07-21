@@ -1,10 +1,11 @@
 package rip.skyland.pearls.entity;
 
-import net.minecraft.server.v1_7_R4.*;
+import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_7_R4.event.CraftEventFactory;
+import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import rip.skyland.pearls.Locale;
@@ -22,21 +23,21 @@ public class CustomEnderpearl extends EntityEnderPearl {
     }
 
     protected void a(MovingObjectPosition movingObjectPosition) {
-        Block block = this.world.getType(movingObjectPosition.b, movingObjectPosition.c, movingObjectPosition.d);
+        //Block block = this.world.getType(movingObjectPosition.b, movingObjectPosition.c, movingObjectPosition.d);
+        Block block = this.world.c(movingObjectPosition.a());
 
         // check if it's a tripwire
         if ((block == Blocks.TRIPWIRE && Locale.PEARL_THROUGH_TRIPWIRE.getAsBoolean())) {
             return;
         }
 
-        if((block == Blocks.FENCE_GATE && BlockFenceGate.b(this.world.getData(movingObjectPosition.b, movingObjectPosition.c, movingObjectPosition.d)) && Locale.PEARL_THROUGH_FENCE.getAsBoolean())) {
+        if((block == Blocks.FENCE_GATE && BlockFenceGate.a(block, block) && Locale.PEARL_THROUGH_FENCE.getAsBoolean())) {
             this.passedThroughFence = true;
             return;
         }
 
-
         // taliban pearls
-        if ((block == Blocks.STEP && Locale.PEARL_THROUGH_SLAB.getAsBoolean()) || (block.getName().toLowerCase().contains("stairs") && Locale.PEARL_THROUGH_STAIR.getAsBoolean())) {
+        if ((block.getMaterial().equals(Material.STEP) && Locale.PEARL_THROUGH_SLAB.getAsBoolean()) || (block.getName().toLowerCase().contains("stairs") && Locale.PEARL_THROUGH_STAIR.getAsBoolean())) {
             this.passedThroughSlabOrStair = true;
             return;
         }
@@ -48,7 +49,7 @@ public class CustomEnderpearl extends EntityEnderPearl {
         }
 
 
-        if (this.world.isStatic) {
+        if (this.world.isClientSide) {
             return;
         }
 
@@ -58,7 +59,7 @@ public class CustomEnderpearl extends EntityEnderPearl {
             return;
         }
 
-        if (((EntityPlayer) this.getShooter()).playerConnection.b().isConnected() && this.getShooter().world == this.world) {
+        if (!(((EntityPlayer) this.getShooter()).playerConnection.isDisconnected()) && this.getShooter().world == this.world) {
 
             EntityPlayer entityplayer = (EntityPlayer) this.getShooter();
             CraftPlayer player = entityplayer.getBukkitEntity();
@@ -107,12 +108,14 @@ public class CustomEnderpearl extends EntityEnderPearl {
             Bukkit.getPluginManager().callEvent(event);
 
             if (!event.isCancelled() && !entityplayer.playerConnection.isDisconnected()) {
-                if (this.getShooter().am()) {
+                /*if (this.getShooter().am()) {
                     this.getShooter().mount(null);
-                }
+                }*/
 
                 entityplayer.playerConnection.teleport(event.getTo());
-                IntStream.range(0, 32).forEach(i -> this.world.addParticle("portal", this.locX, this.locY + this.random.nextDouble() * 2.0D, this.locZ, this.random.nextGaussian(), 0.0D, this.random.nextGaussian()));
+                IntStream.range(0, 32).forEach(i ->
+                        this.world.addParticle(EnumParticle.PORTAL, this.locX, this.locY + this.random.nextDouble() * 2.0D, this.locZ, this.random.nextGaussian(), 0.0D, this.random.nextGaussian())
+                );
 
                 this.getShooter().fallDistance = 0.0F;
 
@@ -145,7 +148,7 @@ public class CustomEnderpearl extends EntityEnderPearl {
 
     private boolean passableBlock(Block block, MovingObjectPosition movingObjectPosition) {
         return  (block.equals(Blocks.TRIPWIRE) && Locale.PEARL_THROUGH_TRIPWIRE.getAsBoolean()) &&
-                (block.equals(Blocks.FENCE_GATE) && BlockFenceGate.b(this.world.getData(movingObjectPosition.b, movingObjectPosition.c, movingObjectPosition.d)) && Locale.PEARL_THROUGH_FENCE.getAsBoolean());
+                (block.equals(Blocks.FENCE_GATE) && BlockFenceGate.a(block, block) && Locale.PEARL_THROUGH_FENCE.getAsBoolean());
     }
 
 }
