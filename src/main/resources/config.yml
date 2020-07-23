@@ -1,6 +1,7 @@
 general:
   pearl_damage: false
   pearl_through_open_fence: true
+  pearl_through_fence: true
   pearl_through_tripwire: true
   anti_glitch: true
 taliban:

@@ -23,15 +23,17 @@ public class CustomEnderpearl extends EntityEnderPearl {
     }
 
     protected void a(MovingObjectPosition movingObjectPosition) {
-        //Block block = this.world.getType(movingObjectPosition.b, movingObjectPosition.c, movingObjectPosition.d);
         Block block = this.world.c(movingObjectPosition.a());
 
         // check if it's a tripwire
-        if ((block == Blocks.TRIPWIRE && Locale.PEARL_THROUGH_TRIPWIRE.getAsBoolean())) {
+        if ((block.equals(Blocks.TRIPWIRE) && Locale.PEARL_THROUGH_TRIPWIRE.getAsBoolean())) return;
+
+        if((block.equals(Blocks.FENCE_GATE) && BlockFenceGate.a(block, block) && Locale.PEARL_THROUGH_OPEN_FENCE.getAsBoolean())) {
+            this.passedThroughFence = true;
             return;
         }
 
-        if((block == Blocks.FENCE_GATE && BlockFenceGate.a(block, block) && Locale.PEARL_THROUGH_FENCE.getAsBoolean())) {
+        if (block.equals(Blocks.FENCE) && Locale.PEARL_THROUGH_FENCE.getAsBoolean()) {
             this.passedThroughFence = true;
             return;
         }
@@ -48,10 +50,7 @@ public class CustomEnderpearl extends EntityEnderPearl {
             return;
         }
 
-
-        if (this.world.isClientSide) {
-            return;
-        }
+        if (this.world.isClientSide) return;
 
         // since when can other entities shoot enderpearls? (mojang logic)
         if (this.getShooter() == null || !(this.getShooter() instanceof EntityPlayer)) {
@@ -87,7 +86,7 @@ public class CustomEnderpearl extends EntityEnderPearl {
             assert location != null;
             toCheck = getCheckableLocation(location);
 
-            if(location.getBlock().getType().isSolid() && !toCheck.add(0, 1, 0).getBlock().getType().isSolid()) {
+            if (location.getBlock().getType().isSolid() && !toCheck.add(0, 1, 0).getBlock().getType().isSolid()) {
                 location.setY(location.getY()+1);
             }
 
@@ -135,20 +134,18 @@ public class CustomEnderpearl extends EntityEnderPearl {
             if(!location1.add(location1.getDirection().multiply(i)).getBlock().getType().isSolid())
                 return location1.add(location1.getDirection().multiply(1));
         }
-
         return null;
     }
 
     private Location getCheckableLocation(Location originalLocation) {
         Location location = new Location(originalLocation.getWorld(), originalLocation.getBlockX(), originalLocation.getBlockY(), originalLocation.getBlockZ());
         location.setDirection(originalLocation.getDirection());
-
         return location;
     }
 
     private boolean passableBlock(Block block, MovingObjectPosition movingObjectPosition) {
         return  (block.equals(Blocks.TRIPWIRE) && Locale.PEARL_THROUGH_TRIPWIRE.getAsBoolean()) &&
-                (block.equals(Blocks.FENCE_GATE) && BlockFenceGate.a(block, block) && Locale.PEARL_THROUGH_FENCE.getAsBoolean());
+                (block.equals(Blocks.FENCE_GATE) && BlockFenceGate.a(block, block) && Locale.PEARL_THROUGH_OPEN_FENCE.getAsBoolean());
     }
 
 }

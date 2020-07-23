@@ -16,7 +16,7 @@ import java.util.List;
 public class PearlCommand implements CommandExecutor {
 
     private String[] arguments = {
-            "taliban", "fence", "tripwire", "slab", "stair", "antiglitch"
+            "taliban", "openfence", "fence", "tripwire", "slab", "stair", "antiglitch"
     };
 
 
@@ -39,8 +39,7 @@ public class PearlCommand implements CommandExecutor {
 
         String argument = args[0].toLowerCase();
 
-
-        Locale locale = argument.equals("taliban") ? Locale.TALIBAN_PEARLING : (argument.equals("fence") ? Locale.PEARL_THROUGH_FENCE : (
+        Locale locale = argument.equals("fence") ? Locale.PEARL_THROUGH_FENCE : argument.equals("taliban") ? Locale.TALIBAN_PEARLING : (argument.equals("openfence") ? Locale.PEARL_THROUGH_OPEN_FENCE : (
                 argument.equals("tripwire") ? Locale.PEARL_THROUGH_TRIPWIRE : (argument.equals("slab") ? Locale.PEARL_THROUGH_SLAB : (
                         argument.equals("stair") ? Locale.PEARL_THROUGH_STAIR : Locale.ANTI_GLITCH
                 ))
