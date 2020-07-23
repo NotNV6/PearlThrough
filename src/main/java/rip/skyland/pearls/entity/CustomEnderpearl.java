@@ -60,8 +60,8 @@ public class CustomEnderpearl extends EntityEnderPearl {
 
         if (!(((EntityPlayer) this.getShooter()).playerConnection.isDisconnected()) && this.getShooter().world == this.world) {
 
-            EntityPlayer entityplayer = (EntityPlayer) this.getShooter();
-            CraftPlayer player = entityplayer.getBukkitEntity();
+            final EntityPlayer entityplayer = (EntityPlayer) this.getShooter();
+            final CraftPlayer player = entityplayer.getBukkitEntity();
 
             Location location = this.getBukkitEntity().getLocation();
             location.setPitch(player.getLocation().getPitch());
