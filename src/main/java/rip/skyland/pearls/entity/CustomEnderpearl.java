@@ -4,7 +4,6 @@ import lombok.Getter;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
 import org.bukkit.entity.Player;
@@ -61,7 +60,8 @@ public class CustomEnderpearl extends EntityEnderPearl {
 
         // taliban pearls
         // block.getMaterial().equals(Material.STEP) isn't the same type (always false?)
-        if ((block.getMaterial().equals(Material.STEP) && Locale.PEARL_THROUGH_SLAB.getAsBoolean()) || (block.getName().toLowerCase().contains("stairs") && Locale.PEARL_THROUGH_STAIR.getAsBoolean())) {
+        //if ((block.getMaterial().equals(Material.STEP) && Locale.PEARL_THROUGH_SLAB.getAsBoolean()) || (block.getName().toLowerCase().contains("stairs") && Locale.PEARL_THROUGH_STAIR.getAsBoolean())) {
+        if (Locale.PEARL_THROUGH_SLAB.getAsBoolean() || (block.getName().toLowerCase().contains("stairs") && Locale.PEARL_THROUGH_STAIR.getAsBoolean())) {
             this.passedThroughSlabOrStair = true;
             return;
         }
