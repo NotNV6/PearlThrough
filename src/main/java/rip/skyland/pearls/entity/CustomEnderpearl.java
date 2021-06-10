@@ -34,24 +34,22 @@ public class CustomEnderpearl extends EntityEnderPearl {
             Blocks.DARK_OAK_FENCE_GATE, Blocks.JUNGLE_FENCE_GATE, Blocks.SPRUCE_FENCE_GATE
     ));
 
-    public CustomEnderpearl(Player player) {
+    public CustomEnderpearl(final Player player) {
         super(((CraftPlayer) player).getHandle().world, ((CraftPlayer) player).getHandle());
     }
 
-    protected void a(MovingObjectPosition movingObjectPosition) {
+    protected void a(final MovingObjectPosition movingObjectPosition) {
         final Block block;
 
         //fix crash by ticking entity
         try {
             block = this.world.getType(movingObjectPosition.a()).getBlock();
-        } catch (Exception ex) {
-            return;
-        }
+        } catch (final Exception ex) { return; }
 
         // check if it's a tripwire
-        if ((block.equals(Blocks.TRIPWIRE) && Locale.PEARL_THROUGH_TRIPWIRE.getAsBoolean())) return;
+        if (block == Blocks.TRIPWIRE && Locale.PEARL_THROUGH_TRIPWIRE.getAsBoolean()) return;
 
-        if((getFenceGateTypes().contains(block) && BlockFenceGate.a(block, block) && Locale.PEARL_THROUGH_OPEN_FENCE.getAsBoolean())) {
+        if (getFenceGateTypes().contains(block) && BlockFenceGate.a(block, block) && Locale.PEARL_THROUGH_OPEN_FENCE.getAsBoolean()) {
             this.passedThroughFence = true;
             return;
         }
@@ -62,6 +60,7 @@ public class CustomEnderpearl extends EntityEnderPearl {
         }
 
         // taliban pearls
+        // block.getMaterial().equals(Material.STEP) isn't the same type (always false?)
         if ((block.getMaterial().equals(Material.STEP) && Locale.PEARL_THROUGH_SLAB.getAsBoolean()) || (block.getName().toLowerCase().contains("stairs") && Locale.PEARL_THROUGH_STAIR.getAsBoolean())) {
             this.passedThroughSlabOrStair = true;
             return;
@@ -81,10 +80,11 @@ public class CustomEnderpearl extends EntityEnderPearl {
             return;
         }
 
-        if (!(((EntityPlayer) this.getShooter()).playerConnection.isDisconnected()) && this.getShooter().world == this.world) {
+        final EntityPlayer entityShooter = (EntityPlayer) this.getShooter();
 
-            final EntityPlayer entityplayer = (EntityPlayer) this.getShooter();
-            final CraftPlayer player = entityplayer.getBukkitEntity();
+        if (!(entityShooter.playerConnection.isDisconnected()) && entityShooter.world == this.world) {
+
+            final CraftPlayer player = entityShooter.getBukkitEntity();
 
             Location location = this.getBukkitEntity().getLocation();
             location.setPitch(player.getLocation().getPitch());
@@ -113,14 +113,14 @@ public class CustomEnderpearl extends EntityEnderPearl {
             }
 
             toCheck = getCheckableLocation(location);
-            for(int i = 1; i < 2; i++) {
+            for (int i = 1; i < 2; i++) {
                 if(toCheck.add(i, i, i).getBlock().getType().isSolid() && !passableBlock(block, movingObjectPosition) && !passedThroughFence && !passedThroughSlabOrStair) {
                     this.dead = true;
                     return;
                 }
             }
 
-            if(location.getBlock().getType().isSolid()) {
+            if (location.getBlock().getType().isSolid()) {
                 this.dead = true;
                 return;
             }
@@ -128,12 +128,12 @@ public class CustomEnderpearl extends EntityEnderPearl {
             PlayerTeleportEvent event = new PlayerTeleportEvent(player, player.getLocation(), location, PlayerTeleportEvent.TeleportCause.ENDER_PEARL);
             Bukkit.getPluginManager().callEvent(event);
 
-            if (!event.isCancelled() && !entityplayer.playerConnection.isDisconnected()) {
+            if (!(event.isCancelled()) && !(entityShooter.playerConnection.isDisconnected())) {
                 /*if (this.getShooter().am()) {
                     this.getShooter().mount(null);
                 }*/
 
-                entityplayer.playerConnection.teleport(event.getTo());
+                entityShooter.playerConnection.teleport(event.getTo());
                 IntStream.range(0, 32).forEach(i ->
                         this.world.addParticle(EnumParticle.PORTAL, this.locX, this.locY + this.random.nextDouble() * 2.0D, this.locZ, this.random.nextGaussian(), 0.0D, this.random.nextGaussian())
                 );
@@ -147,25 +147,23 @@ public class CustomEnderpearl extends EntityEnderPearl {
                 }
             }
         }
-
         this.dead = true;
     }
 
-    private Location getClosestSafeLocation(Location location1) {
+    private Location getClosestSafeLocation(final Location location) {
         for (int i = 0; i < 3; i++) {
-            if (!location1.add(location1.getDirection().multiply(i)).getBlock().getType().isSolid())
-                return location1.add(location1.getDirection().multiply(1));
+            if (!(location.add(location.getDirection().multiply(i)).getBlock().getType().isSolid())) return location.add(location.getDirection().multiply(1));
         }
         return null;
     }
 
-    private Location getCheckableLocation(Location originalLocation) {
+    private Location getCheckableLocation(final Location originalLocation) {
         Location location = new Location(originalLocation.getWorld(), originalLocation.getBlockX(), originalLocation.getBlockY(), originalLocation.getBlockZ());
         location.setDirection(originalLocation.getDirection());
         return location;
     }
 
-    private boolean passableBlock(Block block, MovingObjectPosition movingObjectPosition) {
+    private boolean passableBlock(final Block block, final MovingObjectPosition movingObjectPosition) {
         return (block.equals(Blocks.TRIPWIRE) && Locale.PEARL_THROUGH_TRIPWIRE.getAsBoolean()) &&
                 (getFenceGateTypes().contains(block) && BlockFenceGate.a(block, block) && Locale.PEARL_THROUGH_OPEN_FENCE.getAsBoolean());
     }
