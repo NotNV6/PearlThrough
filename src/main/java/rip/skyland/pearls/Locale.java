@@ -16,10 +16,9 @@ public enum Locale {
     private Object value;
     private String path;
 
-    Locale(String path, Object value) {
-        FileConfiguration config = PearlPlugin.getInstance().getConfig();
+    Locale(final String path, final Object value) {
+        final FileConfiguration config = PearlPlugin.getInstance().getConfig();
         this.path = path;
-
         if (config.contains(path)) {
             this.value = config.get(path);
             return;
@@ -27,7 +26,7 @@ public enum Locale {
         this.value = value;
     }
 
-    public void setValue(Object value) {
+    public void setValue(final Object value) {
         this.value = value;
         PearlPlugin.getInstance().getConfig().set(path, value);
         PearlPlugin.getInstance().saveConfig();
